@@ -31,9 +31,9 @@ function buildFeaturedMessage(deals) {
     var finalString = "";
     for (var i = 0; i < deals.length; i++) {
         var deal = deals[i];
-        var price = deal.final_price.toString()
+        var price = deal.final_price.toString();
         var dealStringObject = {
-            name: deal['name'],
+            name: deal.name,
             percent: deal.discount_percent,
             price_1: price.slice(-2, price.length),
             price_0: price.slice(0, -2),
@@ -47,14 +47,14 @@ function buildFeaturedMessage(deals) {
 
 function buildTopSellersMessage(top_sellers) {
     var finalString = "";
-    var price1 = top_sellers[0].final_price.toString()
-    var price2 = top_sellers[1].final_price.toString()
-    var price3 = top_sellers[2].final_price.toString()
+    var price1 = top_sellers[0].final_price.toString();
+    var price2 = top_sellers[1].final_price.toString();
+    var price3 = top_sellers[2].final_price.toString();
 
     var topSellersStringObject = {
-        game1: top_sellers[0]['name'],
-        game2: top_sellers[1]['name'],
-        game3: top_sellers[2]['name'],
+        game1: top_sellers[0].name,
+        game2: top_sellers[1].name,
+        game3: top_sellers[2].name,
         percent1: top_sellers[0].discount_percent,
         percent2: top_sellers[1].discount_percent,
         percent3: top_sellers[2].discount_percent,
@@ -74,10 +74,14 @@ function buildTopSellersMessage(top_sellers) {
     return finalString;
 }
 
-function makeRequest() {
+function makeRequest(locale) {
+    var default_locale = 'uk';
+    if (locale === 'en-US') {
+        default_locale = 'us';
+    }
     var backend_request = {
         method: 'GET',
-        uri: 'http://store.steampowered.com/api/featuredcategories?cc=uk',
+        uri: 'http://store.steampowered.com/api/featuredcategories?cc=' + default_locale,
         json: true
     };
     return rp(backend_request);
@@ -89,12 +93,13 @@ function makeRequest() {
 //===============
 var handlers = {
     'LaunchRequest': function () {
+        console.log(this);
         this.emit(':tell', 'Hello!');
     },
 
     'GetSpecials': function () {
         var self_obj = this;
-        var reqPromise = makeRequest();
+        var reqPromise = makeRequest(self_obj.locale);
 
         reqPromise.then(function (parsedBody) {
             self_obj.handler.state = states.LIST;
@@ -102,23 +107,23 @@ var handlers = {
             var firstThree = parsedBody.specials.items.slice(0, 3);
             var theRest = parsedBody.specials.items.slice(3);
 
-            self_obj.attributes['theRest'] = theRest;
+            self_obj.attributes.theRest = theRest;
 
-            var introMessage = sprintf("I found %(number)s specials. Here are the first three. ", {number: parsedBody.specials.items.length});
+            var introMessage = sprintf("I found %(number)s specials. Here are the first three. ", { number: parsedBody.specials.items.length });
             var finalMessage = buildFeaturedMessage(firstThree);
-            var question = " Would you like to hear more?"
+            var question = " Would you like to hear more?";
 
             self_obj.emit(':ask', introMessage + finalMessage + question);
 
         }).catch(function (err) {
             console.log(err);
-            self_obj.emit(':tell', 'Oops, Error!');
+            self_obj.emit(':tell', 'I am having some trouble finding the special deals right now. Please try again later.');
         });
     },
 
     'GetTopSellers': function () {
         var self_obj = this;
-        var reqPromise = makeRequest();
+        var reqPromise = makeRequest(self_obj.locale);
 
         reqPromise.then(function (parsedBody) {
             var firstThree = parsedBody.specials.items.slice(0, 3);
@@ -127,38 +132,49 @@ var handlers = {
             self_obj.shouldEndSession = true;
         }).catch(function (err) {
             console.log(err);
-            self_obj.emit(':tell', 'Oops, Error!');
+            self_obj.emit(':tell', 'I am having some trouble finding the top sellers right now. Please try again later.');
         });
     },
 
-    'GetMidweekMadness': function () {
-        this.emit(':tell', 'Hello Get Today\'s Featured!');
-    },
+    // 'GetMidweekMadness': function () {
+    //     this.emit(':tell', 'Hello Get Today\'s Featured!');
+    // },
 
-    'GetNewReleases': function () {
-        this.emit(':tell', 'Hello Get Today\'s Featured!');
+    // 'GetNewReleases': function () {
+    //     this.emit(':tell', 'Hello Get Today\'s Featured!');
+    // },
+    'AMAZON.HelpIntent': function () {
+        this.handler.state = states.ONESHOT;
+        this.shouldEndSession = true;
+        this.emit(':ask', 'You can ask me for the current deals and top selling games on Steam.', 'Just ask me for the current special deals and top sellers on Steam.');
+    },
+    'AMAZON.StopIntent': function () {
+        this.handler.state = states.ONESHOT;
+        this.shouldEndSession = true;
+        this.emit(':tell', 'OK.');
     },
 
     'Unhandled': function () {
         console.log('Unhandled event');
-        this.emit(':ask', 'Sorry. Please say that again?', 'Sorry, we had a problem, would you mind repeating what you said please?');
+        this.emit(':ask', 'Sorry, can you please repeat your question?', 'Sorry, I didn\'t quite understand that. Can you please try again?');
     }
 };
 
 var dealstListStateHandler = Alexa.CreateStateHandler(states.LIST, {
-    'AMAZON.YesIntent': function(){
+    'AMAZON.YesIntent': function () {
         var self_obj = this;
         if ('theRest' in self_obj.attributes) {
-            if (self_obj.attributes['theRest'].length > 3) {
-                var firstThree = self_obj.attributes['theRest'].slice(0, 3);
-                var theRest = self_obj.attributes['theRest'].slice(3);
-                self_obj.attributes['theRest'] = theRest;
+            var finalMessage;
+            if (self_obj.attributes.theRest.length > 3) {
+                var firstThree = self_obj.attributes.theRest.slice(0, 3);
+                var theRest = self_obj.attributes.theRest.slice(3);
+                self_obj.attributes.theRest = theRest;
 
-                var finalMessage = buildFeaturedMessage(firstThree);
+                finalMessage = buildFeaturedMessage(firstThree);
                 self_obj.emit(':ask', 'Sure. ' + finalMessage + ' Would you like to hear more?');
             } else {
-                var finalMessage = buildFeaturedMessage(
-                    self_obj.attributes['theRest']
+                finalMessage = buildFeaturedMessage(
+                    self_obj.attributes.theRest
                 );
                 self_obj.handler.state = states.ONESHOT;
                 self_obj.emit(':tell', 'Sure. ' + finalMessage);
@@ -166,14 +182,24 @@ var dealstListStateHandler = Alexa.CreateStateHandler(states.LIST, {
             }
         }
     },
-    'AMAZON.NoIntent': function() {
+    'AMAZON.NoIntent': function () {
+        this.handler.state = states.ONESHOT;
+        this.shouldEndSession = true;
+        this.emit(':tell', 'OK.');
+    },
+    'AMAZON.HelpIntent': function () {
+        this.handler.state = states.ONESHOT;
+        this.shouldEndSession = true;
+        this.emit(':ask', 'You can ask me for the current deals and top selling games on Steam.', 'Just ask me for the current special deals and top sellers on Steam.');
+    },
+    'AMAZON.StopIntent': function () {
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':tell', 'OK.');
     },
     'Unhandled': function () {
         console.log('Unhandled event');
-        this.emit(':ask', 'Sorry. Please say that again?', 'Sorry, we had a problem, would you mind repeating what you said please?');
+        this.emit(':ask', 'Sorry, can you please repeat your question?', 'Sorry, I didn\'t quite understand that. Can you please try again?');
     }
 });
 

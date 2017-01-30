@@ -35,9 +35,9 @@ describe('steam deals', function () {
     app.intent('GetSpecials',
         {
             "utterances": [
-                "What are the {current|} specials",
-                "Tell me {the|} specials",
-                "Specials"
+                "What are the {current|} {specials|discounts|deals}",
+                "Tell me {the|} {specials|discounts|deals}",
+                "{specials|discounts|deals}"
             ]
         },
         function (request, response) {
@@ -48,9 +48,11 @@ describe('steam deals', function () {
     app.intent('GetTopSellers',
         {
             "utterances": [
-                "What are the {current|} top selling games",
+                "What are the {current|} {top selling games|top sellers}",
                 "What is on the top selling list",
+                "What is top selling",
                 "Top selling games",
+                "Top sellers"
             ]
         },
         function (request, response) {
@@ -58,33 +60,33 @@ describe('steam deals', function () {
         }
     );
 
-    app.intent('GetMidweekMadness',
-        {
-            "utterances": [
-                "What is this week's madness",
-                "What are the midweek madnesses",
-                "What is the midweek madness",
-                "Any midweek madness deals",
-                "Midweek madness"
-            ]
-        },
-        function (request, response) {
-            return true;
-        }
-    );
+    // app.intent('GetMidweekMadness',
+    //     {
+    //         "utterances": [
+    //             "What is this week's madness",
+    //             "What are the midweek madnesses",
+    //             "What is the midweek madness",
+    //             "Any midweek madness deals",
+    //             "Midweek madness"
+    //         ]
+    //     },
+    //     function (request, response) {
+    //         return true;
+    //     }
+    // );
 
-    app.intent('GetNewReleases',
-        {
-            "utterances": [
-                "What are the new releases",
-                "New {games|releases}",
-                "What is new",
-            ]
-        },
-        function (request, response) {
-            return true;
-        }
-    );
+    // app.intent('GetNewReleases',
+    //     {
+    //         "utterances": [
+    //             "What are the new releases",
+    //             "New {games|releases}",
+    //             "What is new",
+    //         ]
+    //     },
+    //     function (request, response) {
+    //         return true;
+    //     }
+    // );
 
     app.intent('AMAZON.YesIntent',
         {
@@ -104,6 +106,7 @@ describe('steam deals', function () {
             "slots": {
             },
             "utterances": [
+                "{no|nope|not really|nah|no thanks}"
             ]
         },
         function (request, response) {

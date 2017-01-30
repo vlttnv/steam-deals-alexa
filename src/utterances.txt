@@ -19,14 +19,6 @@ SCHEMA:
          "slots": []
       },
       {
-         "intent": "GetMidweekMadness",
-         "slots": []
-      },
-      {
-         "intent": "GetNewReleases",
-         "slots": []
-      },
-      {
          "intent": "AMAZON.YesIntent",
          "slots": []
       },
@@ -47,27 +39,37 @@ UTTERANCES:
 
 GetSpecials	What are the current specials
 GetSpecials	What are the specials
+GetSpecials	What are the current discounts
+GetSpecials	What are the discounts
+GetSpecials	What are the current deals
+GetSpecials	What are the deals
 GetSpecials	Tell me the specials
 GetSpecials	Tell me specials
-GetSpecials	Specials
+GetSpecials	Tell me the discounts
+GetSpecials	Tell me discounts
+GetSpecials	Tell me the deals
+GetSpecials	Tell me deals
+GetSpecials	specials
+GetSpecials	discounts
+GetSpecials	deals
 GetTopSellers	What are the current top selling games
 GetTopSellers	What are the top selling games
+GetTopSellers	What are the current top sellers
+GetTopSellers	What are the top sellers
 GetTopSellers	What is on the top selling list
+GetTopSellers	What is top selling
 GetTopSellers	Top selling games
-GetMidweekMadness	What is this week's madness
-GetMidweekMadness	What are the midweek madnesses
-GetMidweekMadness	What is the midweek madness
-GetMidweekMadness	Any midweek madness deals
-GetMidweekMadness	Midweek madness
-GetNewReleases	What are the new releases
-GetNewReleases	New games
-GetNewReleases	New releases
-GetNewReleases	What is new
+GetTopSellers	Top sellers
 AMAZON.YesIntent	yes
 AMAZON.YesIntent	yes please
 AMAZON.YesIntent	yes sure
 AMAZON.YesIntent	sure
 AMAZON.YesIntent	yeah
+AMAZON.NoIntent	no
+AMAZON.NoIntent	nope
+AMAZON.NoIntent	not really
+AMAZON.NoIntent	nah
+AMAZON.NoIntent	no thanks
 SchemaPrinter	get all utterances
 
 
@@ -75,5 +77,5 @@ SchemaPrinter	get all utterances
         ✓ returns a a non-null response
 
 
-  1 passing (15ms)
+  1 passing (22ms)
 
