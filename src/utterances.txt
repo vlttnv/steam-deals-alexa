@@ -1,0 +1,79 @@
+Integration tests: all intents
+
+
+  steam deals
+    #app.SchemaPrinter
+      Should return the entire schema and utterances of the Interaction Model in this skill
+
+
+SCHEMA:
+
+{
+   "intents": [
+      {
+         "intent": "GetSpecials",
+         "slots": []
+      },
+      {
+         "intent": "GetTopSellers",
+         "slots": []
+      },
+      {
+         "intent": "GetMidweekMadness",
+         "slots": []
+      },
+      {
+         "intent": "GetNewReleases",
+         "slots": []
+      },
+      {
+         "intent": "AMAZON.YesIntent",
+         "slots": []
+      },
+      {
+         "intent": "AMAZON.NoIntent",
+         "slots": []
+      },
+      {
+         "intent": "SchemaPrinter",
+         "slots": []
+      }
+   ]
+}
+
+
+
+UTTERANCES:
+
+GetSpecials	What are the current specials
+GetSpecials	What are the specials
+GetSpecials	Tell me the specials
+GetSpecials	Tell me specials
+GetSpecials	Specials
+GetTopSellers	What are the current top selling games
+GetTopSellers	What are the top selling games
+GetTopSellers	What is on the top selling list
+GetTopSellers	Top selling games
+GetMidweekMadness	What is this week's madness
+GetMidweekMadness	What are the midweek madnesses
+GetMidweekMadness	What is the midweek madness
+GetMidweekMadness	Any midweek madness deals
+GetMidweekMadness	Midweek madness
+GetNewReleases	What are the new releases
+GetNewReleases	New games
+GetNewReleases	New releases
+GetNewReleases	What is new
+AMAZON.YesIntent	yes
+AMAZON.YesIntent	yes please
+AMAZON.YesIntent	yes sure
+AMAZON.YesIntent	sure
+AMAZON.YesIntent	yeah
+SchemaPrinter	get all utterances
+
+
+
+        ✓ returns a a non-null response
+
+
+  1 passing (15ms)
+

@@ -1,0 +1,24 @@
+{
+  "name": "steam_deals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alexa-app": "^2.3.4",
+    "alexa-sdk": "^1.0.6",
+    "aws-sdk": "^2.7.19",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "grunt": "^1.0.1",
+    "grunt-aws-lambda": "^0.13.0",
+    "grunt-simple-mocha": "^0.4.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
+    "sprintf-js": "^1.0.3"
+  }
+}

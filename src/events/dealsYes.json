@@ -1,0 +1,159 @@
+{
+  "session": {
+    "sessionId": "SessionId.test",
+    "application": {
+      "applicationId": "amzn1.ask.skill.test"
+    },
+    "attributes": {
+      "theRest": [
+        {
+          "id": 493340,
+          "type": 0,
+          "name": "Planet Coaster",
+          "discounted": true,
+          "discount_percent": 15,
+          "original_price": 2999,
+          "final_price": 2549,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/493340/capsule_616x353.jpg?t=1481814931",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/493340/capsule_184x69.jpg?t=1481814931",
+          "windows_available": true,
+          "mac_available": false,
+          "linux_available": false,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/493340/header.jpg?t=1481814931"
+        },
+        {
+          "id": 252950,
+          "type": 0,
+          "name": "Rocket League®",
+          "discounted": true,
+          "discount_percent": 40,
+          "original_price": 1499,
+          "final_price": 899,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/252950/capsule_616x353.jpg?t=1481660452",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/252950/capsule_184x69.jpg?t=1481660452",
+          "windows_available": true,
+          "mac_available": true,
+          "linux_available": true,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/252950/header.jpg?t=1481660452",
+          "headline": "Starbase ARC Update Live!",
+          "controller_support": "full"
+        },
+        {
+          "id": 359550,
+          "type": 0,
+          "name": "Tom Clancy's Rainbow Six® Siege",
+          "discounted": true,
+          "discount_percent": 50,
+          "original_price": 2999,
+          "final_price": 1499,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/359550/capsule_616x353.jpg?t=1482253994",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/359550/capsule_184x69.jpg?t=1482253994",
+          "windows_available": true,
+          "mac_available": false,
+          "linux_available": false,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/359550/header.jpg?t=1482253994"
+        },
+        {
+          "id": 447040,
+          "type": 0,
+          "name": "Watch_Dogs® 2",
+          "discounted": true,
+          "discount_percent": 33,
+          "original_price": 3999,
+          "final_price": 2679,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/447040/capsule_616x353.jpg?t=1482313931",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/447040/capsule_184x69.jpg?t=1482313931",
+          "windows_available": true,
+          "mac_available": false,
+          "linux_available": false,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/447040/header.jpg?t=1482313931"
+        },
+        {
+          "id": 379720,
+          "type": 0,
+          "name": "DOOM",
+          "discounted": true,
+          "discount_percent": 67,
+          "original_price": 3999,
+          "final_price": 1319,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/379720/capsule_616x353.jpg?t=1480097058",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/379720/capsule_184x69.jpg?t=1480097058",
+          "windows_available": true,
+          "mac_available": false,
+          "linux_available": false,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/379720/header.jpg?t=1480097058"
+        },
+        {
+          "id": 346110,
+          "type": 0,
+          "name": "ARK: Survival Evolved",
+          "discounted": true,
+          "discount_percent": 60,
+          "original_price": 2299,
+          "final_price": 919,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/346110/capsule_616x353.jpg?t=1482528933",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/346110/capsule_184x69.jpg?t=1482528933",
+          "windows_available": true,
+          "mac_available": true,
+          "linux_available": true,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/346110/header.jpg?t=1482528933",
+          "headline": "New DLC Available",
+          "controller_support": "full"
+        },
+        {
+          "id": 374320,
+          "type": 0,
+          "name": "DARK SOULS™ III",
+          "discounted": true,
+          "discount_percent": 50,
+          "original_price": 3999,
+          "final_price": 1999,
+          "currency": "GBP",
+          "large_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/374320/capsule_616x353.jpg?t=1481815623",
+          "small_capsule_image": "http://cdn.akamai.steamstatic.com/steam/apps/374320/capsule_184x69.jpg?t=1481815623",
+          "windows_available": true,
+          "mac_available": false,
+          "linux_available": false,
+          "streamingvideo_available": false,
+          "discount_expiration": 1483380600,
+          "header_image": "http://cdn.akamai.steamstatic.com/steam/apps/374320/header.jpg?t=1481815623",
+          "controller_support": "full"
+        }
+      ],
+      "STATE": "_LIST"
+    },
+    "user": {
+      "userId": "test"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.test",
+    "locale": "en-GB",
+    "timestamp": "2016-12-27T10:48:28Z",
+    "intent": {
+      "name": "AMAZON.YesIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}

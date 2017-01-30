@@ -1,0 +1,24 @@
+{
+  "session": {
+    "sessionId": "SessionId.test",
+    "application": {
+      "applicationId": "amzn1.ask.skill.test"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.test"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.test",
+    "locale": "en-GB",
+    "timestamp": "2016-12-23T09:26:31Z",
+    "intent": {
+      "name": "GetSpecials",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}
