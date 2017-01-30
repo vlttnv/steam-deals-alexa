@@ -114,6 +114,32 @@ describe('steam deals', function () {
         }
     );
 
+    app.intent('AMAZON.HelpIntent',
+        {
+            "slots": {
+            },
+            "utterances": [
+                "{help|help me|what can you do}"
+            ]
+        },
+        function (request, response) {
+            return true;
+        }
+    );
+
+    app.intent('AMAZON.StopIntent',
+        {
+            "slots": {
+            },
+            "utterances": [
+                "{stop|exit|cancel}"
+            ]
+        },
+        function (request, response) {
+            return true;
+        }
+    );
+
     app.intent('SchemaPrinter',
         {
             "slots": {}

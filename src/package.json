@@ -13,5 +13,10 @@
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "sprintf-js": "^1.0.3"
+  },
+  "devDependencies": {
+    "alexa-app": "^2.4.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0"
   }
 }

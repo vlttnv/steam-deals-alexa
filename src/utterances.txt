@@ -27,6 +27,14 @@ SCHEMA:
          "slots": []
       },
       {
+         "intent": "AMAZON.HelpIntent",
+         "slots": []
+      },
+      {
+         "intent": "AMAZON.StopIntent",
+         "slots": []
+      },
+      {
          "intent": "SchemaPrinter",
          "slots": []
       }
@@ -70,6 +78,12 @@ AMAZON.NoIntent	nope
 AMAZON.NoIntent	not really
 AMAZON.NoIntent	nah
 AMAZON.NoIntent	no thanks
+AMAZON.HelpIntent	help
+AMAZON.HelpIntent	help me
+AMAZON.HelpIntent	what can you do
+AMAZON.StopIntent	stop
+AMAZON.StopIntent	exit
+AMAZON.StopIntent	cancel
 SchemaPrinter	get all utterances
 
 
@@ -77,5 +91,5 @@ SchemaPrinter	get all utterances
         ✓ returns a a non-null response
 
 
-  1 passing (22ms)
+  1 passing (25ms)
 
