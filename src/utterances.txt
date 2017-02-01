@@ -19,6 +19,10 @@ SCHEMA:
          "slots": []
       },
       {
+         "intent": "GetDailyDeals",
+         "slots": []
+      },
+      {
          "intent": "AMAZON.YesIntent",
          "slots": []
       },
@@ -49,17 +53,17 @@ GetSpecials	What are the current specials
 GetSpecials	What are the specials
 GetSpecials	What are the current discounts
 GetSpecials	What are the discounts
-GetSpecials	What are the current deals
-GetSpecials	What are the deals
+GetSpecials	What are the current dicounted games
+GetSpecials	What are the dicounted games
 GetSpecials	Tell me the specials
 GetSpecials	Tell me specials
 GetSpecials	Tell me the discounts
 GetSpecials	Tell me discounts
-GetSpecials	Tell me the deals
-GetSpecials	Tell me deals
+GetSpecials	Tell me the discounted games
+GetSpecials	Tell me discounted games
 GetSpecials	specials
 GetSpecials	discounts
-GetSpecials	deals
+GetSpecials	discounted games
 GetTopSellers	What are the current top selling games
 GetTopSellers	What are the top selling games
 GetTopSellers	What are the current top sellers
@@ -68,6 +72,16 @@ GetTopSellers	What is on the top selling list
 GetTopSellers	What is top selling
 GetTopSellers	Top selling games
 GetTopSellers	Top sellers
+GetDailyDeals	What are the current daily deals
+GetDailyDeals	What are today's daily deals
+GetDailyDeals	What are the current daily discount
+GetDailyDeals	What are today's daily discount
+GetDailyDeals	What is the daily deal
+GetDailyDeals	What is the daily discount
+GetDailyDeals	the daily discount
+GetDailyDeals	daily discount
+GetDailyDeals	the daily deal
+GetDailyDeals	daily deal
 AMAZON.YesIntent	yes
 AMAZON.YesIntent	yes please
 AMAZON.YesIntent	yes sure
@@ -91,5 +105,5 @@ SchemaPrinter	get all utterances
         ✓ returns a a non-null response
 
 
-  1 passing (25ms)
+  1 passing (24ms)
 

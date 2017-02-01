@@ -22,18 +22,6 @@ grunt.initConfig({
                 event: 'events/getTopSellers.json'
             }
         },
-        madness: {
-            options: {
-                file_name: 'run.js',
-                event: 'events/getMadness.json'
-            }
-        },
-        new: {
-            options: {
-                file_name: 'run.js',
-                event: 'events/newReleases.json'
-            }
-        },
         yesdeals: {
             options: {
                 file_name: 'run.js',
@@ -44,6 +32,12 @@ grunt.initConfig({
             options: {
                 file_name: 'run.js',
                 event: 'events/getTodaysFeatured.json'
+            }
+        },
+        daily: {
+            options: {
+                file_name: 'run.js',
+                event: 'events/getDailyDeals.json'
             }
         }
     }

@@ -9,7 +9,12 @@ var states = {
 
 var phrases = {
     singleDeal: "%(name)s is discounted by %(percent)s percent and is now %(price_0)s.%(price_1)s %(currency)s. ",
-    topSellers: "The top selling game is %(game1)s, for %(price1_0)s.%(price1_1)s %(currency1)s, followed by %(game2)s, for %(price2_0)s.%(price2_1)s %(currency2)s, and %(game3)s, for %(price3_0)s.%(price3_1)s %(currency3)s."
+    topSellers: "The top selling game is %(game1)s, for %(price1_0)s.%(price1_1)s %(currency1)s, followed by %(game2)s, for %(price2_0)s.%(price2_1)s %(currency2)s, and %(game3)s, for %(price3_0)s.%(price3_1)s %(currency3)s.",
+    hearMore: [" Would you like to hear more?", " Do you want to hear more?", " Should I continue?"],
+    hello: [
+        "I can tell you what the current discounted games on Steam are, as well as the top selling games and daily deals.",
+        "You can ask me about the current discounted games on Steam, the top sellers and daily deals.",
+    ]
 };
 
 
@@ -94,7 +99,7 @@ function makeRequest(locale) {
 var handlers = {
     'LaunchRequest': function () {
         console.log(this);
-        this.emit(':tell', 'Hello!');
+        this.emit(':tell', pickPhrase(phrases.hello));
     },
 
     'GetSpecials': function () {
@@ -109,9 +114,9 @@ var handlers = {
 
             self_obj.attributes.theRest = theRest;
 
-            var introMessage = sprintf("I found %(number)s specials. Here are the first three. ", { number: parsedBody.specials.items.length });
+            var introMessage = sprintf("I found %(number)s discounted games. Here are the first three. ", { number: parsedBody.specials.items.length });
             var finalMessage = buildFeaturedMessage(firstThree);
-            var question = " Would you like to hear more?";
+            var question = pickPhrase(phrases.hearMore);
 
             self_obj.emit(':ask', introMessage + finalMessage + question);
 
@@ -135,14 +140,28 @@ var handlers = {
             self_obj.emit(':tell', 'I am having some trouble finding the top sellers right now. Please try again later.');
         });
     },
+    'GetDailyDeals': function () {
+        var self_obj = this;
+        var reqPromise = makeRequest(self_obj.locale);
+        reqPromise.then(function (parsedBody) {
+            var finalMessage;
+            for (var dailyDeal in parsedBody) {
+                if (!parsedBody.hasOwnProperty(dailyDeal)) continue;
+                if (parsedBody[dailyDeal].id == 'cat_dailydeal') {
+                    finalMessage = 'Here are today\'s deals: ' + buildFeaturedMessage(parsedBody[dailyDeal].items);
+                    break;
+                } else {
+                    finalMessage = 'There are no daily deals today. Check back again tomorrow.';
+                }
 
-    // 'GetMidweekMadness': function () {
-    //     this.emit(':tell', 'Hello Get Today\'s Featured!');
-    // },
-
-    // 'GetNewReleases': function () {
-    //     this.emit(':tell', 'Hello Get Today\'s Featured!');
-    // },
+            }
+            self_obj.emit(':tell', finalMessage);
+            self_obj.shouldEndSession = true;
+        }).catch(function (err) {
+            console.log(err);
+            self_obj.emit(':tell', 'I am having some trouble finding the daily deals right now. Please try again later.');
+        });
+    },
     'AMAZON.HelpIntent': function () {
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;

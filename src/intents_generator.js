@@ -35,9 +35,9 @@ describe('steam deals', function () {
     app.intent('GetSpecials',
         {
             "utterances": [
-                "What are the {current|} {specials|discounts|deals}",
-                "Tell me {the|} {specials|discounts|deals}",
-                "{specials|discounts|deals}"
+                "What are the {current|} {specials|discounts|dicounted games}",
+                "Tell me {the|} {specials|discounts|discounted games}",
+                "{specials|discounts|discounted games}"
             ]
         },
         function (request, response) {
@@ -60,33 +60,19 @@ describe('steam deals', function () {
         }
     );
 
-    // app.intent('GetMidweekMadness',
-    //     {
-    //         "utterances": [
-    //             "What is this week's madness",
-    //             "What are the midweek madnesses",
-    //             "What is the midweek madness",
-    //             "Any midweek madness deals",
-    //             "Midweek madness"
-    //         ]
-    //     },
-    //     function (request, response) {
-    //         return true;
-    //     }
-    // );
+    app.intent('GetDailyDeals',
+        {
+            "utterances": [
+                "What are {the current|today's} {daily deals|daily discount}",
+                "What is the daily {deal|discount}",
+                "{the|} daily {discount|deal}",
+            ]
+        },
+        function (request, response) {
+            return true;
+        }
+    );
 
-    // app.intent('GetNewReleases',
-    //     {
-    //         "utterances": [
-    //             "What are the new releases",
-    //             "New {games|releases}",
-    //             "What is new",
-    //         ]
-    //     },
-    //     function (request, response) {
-    //         return true;
-    //     }
-    // );
 
     app.intent('AMAZON.YesIntent',
         {
