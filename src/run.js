@@ -98,7 +98,8 @@ function makeRequest(locale) {
 //===============
 var handlers = {
     'LaunchRequest': function () {
-        console.log(this);
+        this.handler.state = states.ONESHOT;
+        this.shouldEndSession = true;
         this.emit(':tell', pickPhrase(phrases.hello));
     },
 
