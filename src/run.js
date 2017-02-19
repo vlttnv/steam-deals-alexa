@@ -12,8 +12,8 @@ var phrases = {
     topSellers: "The top selling game is %(game1)s, for %(price1_0)s.%(price1_1)s %(currency1)s, followed by %(game2)s, for %(price2_0)s.%(price2_1)s %(currency2)s, and %(game3)s, for %(price3_0)s.%(price3_1)s %(currency3)s.",
     hearMore: [" Would you like to hear more?", " Do you want to hear more?", " Should I continue?"],
     hello: [
-        "I can tell you what the current discounted games on Steam are, as well as the top selling games and daily deals.",
-        "You can ask me about the current discounted games on Steam, the top sellers and daily deals.",
+        "I can tell you what the current discounted games on Steam are, as well as the top selling games and daily deals. What would you like to know?",
+        "You can ask me about the current discounted games on Steam, the top sellers and daily deals. What would you like to know?",
     ]
 };
 
@@ -98,12 +98,12 @@ function makeRequest(locale) {
 //===============
 var handlers = {
     'LaunchRequest': function () {
-        this.handler.state = states.ONESHOT;
-        this.shouldEndSession = true;
-        this.emit(':tell', pickPhrase(phrases.hello));
+        console.log("LaunchRequest - UserID: " + this.event.session.user.userId);
+        this.emit(':ask', pickPhrase(phrases.hello));
     },
 
     'GetSpecials': function () {
+        console.log("GetSpecials - UserID: " + this.event.session.user.userId);
         var self_obj = this;
         var reqPromise = makeRequest(self_obj.locale);
 
@@ -128,6 +128,7 @@ var handlers = {
     },
 
     'GetTopSellers': function () {
+        console.log("GetTopSellers - UserID: " + this.event.session.user.userId);
         var self_obj = this;
         var reqPromise = makeRequest(self_obj.locale);
 
@@ -142,6 +143,7 @@ var handlers = {
         });
     },
     'GetDailyDeals': function () {
+        console.log("GetDailyDeals - UserID: " + this.event.session.user.userId);
         var self_obj = this;
         var reqPromise = makeRequest(self_obj.locale);
         reqPromise.then(function (parsedBody) {
@@ -164,11 +166,13 @@ var handlers = {
         });
     },
     'AMAZON.HelpIntent': function () {
+        console.log("HelpIntent - UserID: " + this.event.session.user.userId);
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':ask', 'You can ask me for the current deals and top selling games on Steam.', 'Just ask me for the current special deals and top sellers on Steam.');
     },
     'AMAZON.StopIntent': function () {
+        console.log("StopIntent - UserID: " + this.event.session.user.userId);
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':tell', 'OK.');
@@ -182,6 +186,7 @@ var handlers = {
 
 var dealstListStateHandler = Alexa.CreateStateHandler(states.LIST, {
     'AMAZON.YesIntent': function () {
+        console.log("YesIntent - UserID: " + this.event.session.user.userId);
         var self_obj = this;
         if ('theRest' in self_obj.attributes) {
             var finalMessage;
@@ -203,16 +208,19 @@ var dealstListStateHandler = Alexa.CreateStateHandler(states.LIST, {
         }
     },
     'AMAZON.NoIntent': function () {
+        console.log("NoIntent - UserID: " + this.event.session.user.userId);
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':tell', 'OK.');
     },
     'AMAZON.HelpIntent': function () {
+        console.log("HelpIntent - UserID: " + this.event.session.user.userId);
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':ask', 'You can ask me for the current deals and top selling games on Steam.', 'Just ask me for the current special deals and top sellers on Steam.');
     },
     'AMAZON.StopIntent': function () {
+        console.log("StopIntent - UserID: " + this.event.session.user.userId);
         this.handler.state = states.ONESHOT;
         this.shouldEndSession = true;
         this.emit(':tell', 'OK.');
