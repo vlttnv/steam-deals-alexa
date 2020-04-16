@@ -81,8 +81,21 @@ function buildTopSellersMessage(top_sellers) {
 
 function makeRequest(locale) {
     var default_locale = 'uk';
-    if (locale === 'en-US') {
-        default_locale = 'us';
+    switch (locale) {
+        case 'en-US':
+            default_locale = 'us';
+            break;
+        case 'en-CA':
+            default_locale = 'ca';
+            break;
+        case 'en-AU':
+            default_locale = 'au';
+            break;
+        case 'en-IN':
+            default_locale = 'in';
+            break;
+        default:
+            break;
     }
     var backend_request = {
         method: 'GET',
@@ -105,7 +118,7 @@ var handlers = {
     'GetSpecials': function () {
         console.log("GetSpecials - UserID: " + this.event.session.user.userId);
         var self_obj = this;
-        var reqPromise = makeRequest(self_obj.locale);
+        var reqPromise = makeRequest(self_obj.event.request.locale);
 
         reqPromise.then(function (parsedBody) {
             self_obj.handler.state = states.LIST;
@@ -130,7 +143,7 @@ var handlers = {
     'GetTopSellers': function () {
         console.log("GetTopSellers - UserID: " + this.event.session.user.userId);
         var self_obj = this;
-        var reqPromise = makeRequest(self_obj.locale);
+        var reqPromise = makeRequest(self_obj.event.request.locale);
 
         reqPromise.then(function (parsedBody) {
             var firstThree = parsedBody.specials.items.slice(0, 3);
@@ -145,7 +158,7 @@ var handlers = {
     'GetDailyDeals': function () {
         console.log("GetDailyDeals - UserID: " + this.event.session.user.userId);
         var self_obj = this;
-        var reqPromise = makeRequest(self_obj.locale);
+        var reqPromise = makeRequest(self_obj.event.request.locale);
         reqPromise.then(function (parsedBody) {
             var finalMessage;
             for (var dailyDeal in parsedBody) {

@@ -13,7 +13,7 @@
   "request": {
     "type": "IntentRequest",
     "requestId": "EdwRequestId.test",
-    "locale": "en-GB",
+    "locale": "en-US",
     "timestamp": "2016-12-23T09:27:22Z",
     "intent": {
       "name": "GetTopSellers",
