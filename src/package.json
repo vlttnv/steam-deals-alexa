@@ -19,7 +19,7 @@
     "alexa-app": "^2.4.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "grunt": "^1.1.0",
+    "grunt": "^1.5.2",
     "grunt-aws-lambda": "^0.13.0",
     "grunt-simple-mocha": "^0.4.1"
   }
